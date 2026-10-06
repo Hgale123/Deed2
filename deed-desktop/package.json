@@ -1,0 +1,76 @@
+{
+  "name": "deed-desktop",
+  "version": "0.1.0",
+  "description": "Deed desktop transaction workspace with on-device AI",
+  "author": "Deed",
+  "private": true,
+  "main": "main.cjs",
+  "scripts": {
+    "build:ui": "node scripts/build-ui.cjs",
+    "runtime:download": "node scripts/download-runtime.cjs",
+    "start": "npm run build:ui && node scripts/launch.cjs",
+    "launch": "node scripts/launch.cjs",
+    "smoke": "node scripts/launch.cjs --smoke-test",
+    "test": "node --test tests/*.test.cjs",
+    "pack": "npm run build:ui && electron-builder --dir",
+    "dist": "npm run build:ui && electron-builder"
+  },
+  "build": {
+    "appId": "uk.co.deed.desktop",
+    "productName": "Deed",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "*.cjs",
+      "lib/**/*.cjs",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../Deed2/build",
+        "to": "web"
+      },
+      {
+        "from": "../deed-back-end2",
+        "to": "api",
+        "filter": [
+          "server.js",
+          "store.js",
+          "domain.js",
+          "demo.js",
+          "local-assistant.js",
+          "package.json"
+        ]
+      },
+      {
+        "from": "../deed-back-end2/node_modules",
+        "to": "api/node_modules",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "vendor/ollama",
+        "to": "ollama"
+      }
+    ],
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.business",
+      "identity": null
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Office"
+    }
+  },
+  "devDependencies": {
+    "electron": "^44.5.1",
+    "electron-builder": "^26.15.3"
+  }
+}
