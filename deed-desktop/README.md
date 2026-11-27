@@ -1,12 +1,12 @@
 # Deed desktop (React + Electron)
 
-The downloadable app reuses the React interface. Electron owns the local API, workspace store and bundled Ollama process. The website keeps the same transaction interface and has no model endpoint or assistant tab.
+The downloadable app reuses the React interface. Electron owns the local API, workspace store and bundled Ollama process. The website keeps the transaction and agency tools but has no model endpoint or local model runtime; its Ask Deed page explains desktop availability.
 
 ## Try this build
 
 On this Apple Silicon Mac, open `release/mac-arm64/Deed.app`, or install from `release/Deed-0.1.0-arm64.dmg`. These are unsigned local test builds, not notarised public releases. macOS may require opening through its security approval flow.
 
-Create a workspace and transaction. Open the transaction, select **Ask Deed**, and choose **Download local model**. The one-time Qwen3 4B download is approximately 2.5 GB and needs internet; prompts and transaction records are not part of that download. After installation, inference runs on this machine and works offline. Deed starts and stops its own runtime; users do not need Node, terminals or a separate Ollama installation.
+Create a workspace and transaction. Choose **Ask Deed** in the company navigation or from a transaction, then choose **Download local model**. The one-time Qwen3 4B download is approximately 2.5 GB and needs internet; prompts and transaction records are not part of that download. After installation, inference runs on this machine and works offline. Deed starts and stops its own runtime; users do not need Node, terminals or a separate Ollama installation.
 
 The app's workspace and model files are under Electron's user-data directory (`~/Library/Application Support/deed-desktop` for this build on macOS). Browser and desktop data are separate in this pilot. The app does not import, overwrite or synchronise the earlier browser store. On this Mac, the verified model download has already been copied into the app profile; other installations use the in-app download.
 
